@@ -1,22 +1,38 @@
+import { useState } from 'react';
 import './index.css';
 
 const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <div className="app">
       {/* Navigation */}
       <nav className="glass-nav">
         <div className="container navbar">
-          <div className="logo">
-            DR. PROF. <span>B. N. JHA</span>
+          <div className="logo-container">
+            <img src="/logo.png" alt="Dr. B. N. Jha Logo" className="logo-img" />
+            <div className="logo-text">
+              DR. PROF. <span>B. N. JHA</span>
+            </div>
           </div>
-          <div className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#research">Anveshan Centre</a>
-            <a href="#testimonials">Patient Reviews</a>
-            <a href="#contact">Contact</a>
+          
+          <button className="hamburger" onClick={toggleMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+            <a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a>
+            <a href="#services" onClick={() => setIsMenuOpen(false)}>Services</a>
+            <a href="#research" onClick={() => setIsMenuOpen(false)}>Anveshan Centre</a>
+            <a href="#testimonials" onClick={() => setIsMenuOpen(false)}>Reviews</a>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a>
           </div>
-          <a href="#contact" className="btn btn-primary">Book Consultation</a>
+          
+          <a href="#contact" className="btn btn-primary">Book Appointment</a>
         </div>
       </nav>
 
@@ -34,7 +50,7 @@ const App = () => {
                 Senior Consultant Physician & Head of Anveshan Cardio-Diabetic Research Centre. 
                 Providing world-class healthcare with over two decades of academic and clinical mastery in Patna.
               </p>
-              <div style={{ display: 'flex', gap: '1rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }} className="hero-btns">
                 <a href="#services" className="btn btn-primary" style={{ padding: '1rem 2.5rem' }}>Explore Expertise</a>
                 <a href="#contact" className="btn" style={{ border: '1px solid var(--primary)', color: 'var(--primary)', padding: '1rem 2.5rem' }}>Visit Clinic</a>
               </div>
@@ -99,7 +115,7 @@ const App = () => {
             <h4 style={{ color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '2px' }}>Research Domain</h4>
             <h2 style={{ color: 'white', fontSize: '3rem', margin: '1.5rem 0' }}>Anveshan Cardio-Diabetic Research Centre</h2>
             <p style={{ fontSize: '1.1rem', opacity: 0.9, marginBottom: '2rem' }}>
-              Directed by Dr. Prof. B. N. Jha, Anveshan is a hub for medical innovation. We integrate the latest clinical trials and international research directly into our patient care strategies.
+              Directed by Dr. Prof. B. N. Jha, Anveshan is more than a clinic; it's a hub for medical innovation. We integrate the latest clinical trials and international research directly into our patient care strategies.
             </p>
             <ul style={{ marginBottom: '2rem' }}>
               <li style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -131,7 +147,7 @@ const App = () => {
               <div key={i} style={{ padding: '2rem', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
                 <div style={{ color: '#fbbf24', fontSize: '1.2rem', marginBottom: '1rem' }}>★★★★★</div>
                 <p style={{ fontStyle: 'italic', marginBottom: '1.5rem' }}>
-                  "Dr. Jha is exceptionally knowledgeable and patient. His approach to diabetes management transformed my daily life. Truly the best in Patna."
+                  "Dr. Jha is exceptionally knowledgeable and patient. His approach to diabetes management transformed my daily life."
                 </p>
                 <h5 style={{ fontWeight: 600 }}>Verified Patient</h5>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Google Review</span>
@@ -159,9 +175,9 @@ const App = () => {
               <p>Sunday: By Appointment Only</p>
             </div>
 
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
               <a href="tel:+910000000000" className="btn btn-primary">Call Now</a>
-              <a href="https://www.google.com/maps/place/Dr+B+N+Jha+-+Consultant+Physician/@25.6129856,85.0732856,17z" target="_blank" className="btn" style={{ border: '1px solid var(--primary)' }}>Get Directions</a>
+              <a href="https://www.google.com/maps/place/Dr+B+N+Jha..." target="_blank" className="btn" style={{ border: '1px solid var(--primary)' }}>Get Directions</a>
             </div>
           </div>
           <form className="contact-form">
@@ -182,17 +198,19 @@ const App = () => {
       {/* Footer */}
       <footer className="section" style={{ padding: '4rem 0', background: 'var(--primary)', color: 'white', textAlign: 'center' }}>
         <div className="container">
-          <div className="logo" style={{ color: 'white', fontSize: '1.5rem', marginBottom: '2rem' }}>
-            DR. PROF. <span>B. N. JHA</span>
+          <div className="logo-container" style={{ justifyContent: 'center', marginBottom: '2rem' }}>
+            <img src="/logo.png" alt="Logo" className="logo-img" style={{ filter: 'brightness(0) invert(1)' }} />
+            <div className="logo-text" style={{ color: 'white', fontSize: '1.5rem' }}>
+              DR. PROF. <span>B. N. JHA</span>
+            </div>
           </div>
           <p style={{ opacity: 0.6, maxWidth: '600px', margin: '0 auto 2rem' }}>
             Elevating healthcare standards through clinical precision and academic excellence. 
             © {new Date().getFullYear()} Dr. B. N. Jha. All rights reserved.
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', opacity: 0.8 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', opacity: 0.8 }} className="footer-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Medical Disclaimer</a>
-            <a href="#">Professional Bio</a>
           </div>
         </div>
       </footer>
