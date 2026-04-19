@@ -330,11 +330,38 @@ ul {
   .hero-grid, .research-grid, .contact-grid {
     grid-template-columns: 1fr;
   }
-  .navbar .nav-links, .navbar .btn {
+  .navbar .btn {
     display: none;
   }
   .hero {
     padding-top: 120px;
     text-align: center;
   }
+}
+
+/* Premium Animations & Blobs */
+.bg-blob {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 35, 102, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+  filter: blur(100px);
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+  animation: blobFloat 20s infinite alternate;
+}
+
+.blob-1 { top: -10%; left: -10%; }
+.blob-2 { bottom: -10%; right: -10%; animation-delay: -5s; }
+
+@keyframes blobFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 30px) scale(1.1); }
+  100% { transform: translate(-20px, 50px) scale(0.9); }
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
